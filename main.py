@@ -40,12 +40,12 @@ async def on_message(message):
                 with YoutubeDL(ydl_opts) as ydl:
                     info = ydl.extract_info(convert_message, download=True)
                     filename = ydl.prepare_filename(info)
-                    if os.path.getsize(filename) < 8 * 1024 * 1024:
+                    if os.path.getsize(filename) < 25 * 1024 * 1024:
                         await message.reply(mention_author=False ,file=discord.File(f"{filename}"))
                         await message.edit(suppress=True)
                         os.remove(f"{filename}")
                     else:
-                        print(f"Unable to send {filename} file exceeds 8mb")
+                        print(f"Unable to send {filename} file exceeds 25mb")
                         os.remove(f"{filename}")
         except:
             return
